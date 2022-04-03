@@ -1,0 +1,12 @@
+html,body{
+    margin:0;
+    height:100%;
+    background: #222;
+}
+img{
+  display:block;
+  margin-left: auto;
+  margin-right: auto; 
+  height:100%;
+  object-fit: cover;
+}
