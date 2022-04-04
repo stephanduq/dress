@@ -3,10 +3,24 @@ html,body{
     height:100%;
     background: #222;
 }
-img{
+
+#container{
   display:block;
   margin-left: auto;
   margin-right: auto; 
   height:100%;
+  width:1%;
   object-fit: cover;
+  
+}
+
+img{
+  display:block;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto; 
+  height:100%;
+  object-fit: cover;
+  transform: translateX(-50%);
+  
 }

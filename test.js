@@ -5,28 +5,30 @@
 
  currenturl = "";
 
+ const web3 = new Web3('wss://rinkeby.infura.io/ws/v3/6bce9102f840475db7e291f4124d7951'); //http://localhost:8545/ net::ERR_CONNECTION_REFUSED 
+ //const web3 = new Web3(window.ethereum); //http://localhost:8545/ net::ERR_CONNECTION_REFUSED 
+ window.web3 = new Web3(window.ethereum);
+ //console.log(web3.providers);
+
+ //web3.setProvider('ws://localhost:8546');
+
+ const abi = [{
+     "type":"function",
+     "name":"tokenURI",
+     "constant":false,
+     "payable":false,
+     "stateMutability":"nonpayable",
+     "inputs":[{"name":"tokenId","type":"uint256"}],
+     "outputs":[{"name":"","type":"string"}]
+   }];
+
+ const address =  "0x7561bef49d1f88b7885f7127649ca0af3f5bbba0";
+ const options = [{}];
+
+ const contract = new web3.eth.Contract(abi, address, options);   // options = {from: account, value: 100000 }
+
 function getimageurl(){
-  const web3 = new Web3('wss://rinkeby.infura.io/ws/v3/6bce9102f840475db7e291f4124d7951'); //http://localhost:8545/ net::ERR_CONNECTION_REFUSED 
-  //const web3 = new Web3(window.ethereum); //http://localhost:8545/ net::ERR_CONNECTION_REFUSED 
-  window.web3 = new Web3(window.ethereum);
-  //console.log(web3.providers);
-
-  //web3.setProvider('ws://localhost:8546');
-
-  const abi = [{
-      "type":"function",
-      "name":"tokenURI",
-      "constant":false,
-      "payable":false,
-      "stateMutability":"nonpayable",
-      "inputs":[{"name":"tokenId","type":"uint256"}],
-      "outputs":[{"name":"","type":"string"}]
-    }];
-
-  const address =  "0x7561bef49d1f88b7885f7127649ca0af3f5bbba0";
-  const options = [{}];
-
-  const contract = new web3.eth.Contract(abi, address, options);   // options = {from: account, value: 100000 }
+ 
 
   // smartcontract read method
   contract.methods.tokenURI(1).call().then((res) => {
@@ -37,7 +39,7 @@ function getimageurl(){
 
     
 
-
+    
 
   }).catch((err) => {
     console.log(err);
@@ -60,19 +62,25 @@ function preload(url) {
   var newSrc =url,
         image = new Image();    
 
-        $('.img').attr('src', url).on('load', function(){
-          //this.width;   // Note: $(this).width() will not work for in memory images
+     //   $('.img').attr('src', url).on('load', function(){
+       //   //this.width;   // Note: $(this).width() will not work for in memory images
+      //     $(this).fadeIn();
+      //});
+
       
-      });
-    //  $('<img />').attr('src',url).appendTo('body').hide();
- 
+
+
+      $(".img_new").fadeTo(1,0, function() {
+        $(".img_new").attr("src",url);
+    }).fadeTo(5000,1,function(){$(".img_current").attr("src",url);});
+    
 }
 
 function formaturl(url){
   
   url = url.substring(53)
   
-  url = "https://storageapi2.fleek.co/6c5d9a4e-b682-471b-8f88-c350d01587e3-bucket/thedress" + url;
+  url = "https://storageapi2.fleek.co/6c5d9a4e-b682-471b-8f88-c350d01587e3-bucket/historic_gown" + url;
 
   if(url!=currenturl){
 
