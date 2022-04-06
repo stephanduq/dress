@@ -22,7 +22,7 @@
      "outputs":[{"name":"","type":"string"}]
    }];
 
- const address =  "0x7561bef49d1f88b7885f7127649ca0af3f5bbba0";
+ const address =  "0xa901be23102f1a34c894155b329e3edebb6db95c";
  const options = [{}];
 
  const contract = new web3.eth.Contract(abi, address, options);   // options = {from: account, value: 100000 }
@@ -34,6 +34,7 @@ function getimageurl(){
   contract.methods.tokenURI(1).call().then((res) => {
     res = res.substring(27);
     
+  
     const obj = JSON.parse(res);
     formaturl(obj["imageUrl"]);
 
@@ -78,9 +79,10 @@ function preload(url) {
 
 function formaturl(url){
   
-  url = url.substring(53)
+  url = url.substring(7)
+  //console.log(url);
   
-  url = "https://storageapi2.fleek.co/6c5d9a4e-b682-471b-8f88-c350d01587e3-bucket/historic_gown" + url;
+  url = "https://stephanduq.mypinata.cloud/ipfs/" + url;
 
   if(url!=currenturl){
 
