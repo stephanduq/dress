@@ -22,7 +22,7 @@
      "outputs":[{"name":"","type":"string"}]
    }];
 
- const address =  "0xd0c18f49fcbfac19cdea323dfc1b5ef840725bd6";
+ const address =  "0xf3303a420bf641047cc8e7884c068dca4451904e";
  const options = [{}];
 
  const contract = new web3.eth.Contract(abi, address, options);   // options = {from: account, value: 100000 }
